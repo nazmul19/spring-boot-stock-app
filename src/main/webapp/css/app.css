@@ -1,0 +1,9 @@
+.rds-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rds-price-underline{
+	border-bottom: 2px #373FF5   solid;
+}

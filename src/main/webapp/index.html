@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html data-ng-app="stock">
+    <head>
+    <base href="/">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta content="Md Nazmul Hassan" name="Author" />
+	<title>Stock price</title>
+
+	<link rel="icon"       type="image/x-icon" href="/favicon.ico" />
+	<link rel="stylesheet" type="text/css"     href="css/app.css"/>
+	<link rel="stylesheet" type="text/css"     href="lib/tether/css/tether.min.css"/>
+	<link rel="stylesheet" type="text/css"     href="lib/bootstrap/css/bootstrap.min.css" />
+	
+	<script type="text/javascript" src="lib/tether/js/tether.min.js"></script>
+	<script type="text/javascript" src="lib/jquery/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="lib/angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="lib/angularjs/angular-route.min.js"></script>
+	<script type="text/javascript" src="lib/angularjs/ui-bootstrap-tpls-2.5.0.min.js"></script>
+	
+    </head>
+
+    <body role="document">
+	<div class="container">
+	    <div data-ng-view></div>
+	    <hr />
+	</div>
+    </body>
+    
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/services.js"></script>
+    <script type="text/javascript" src="js/all-stock-controller.js"></script>
+    <script type="text/javascript" src="js/favourite-stock-controller.js"></script>
+    
+    <script type="text/ng-template" id="all-stock-tpl.html">
+    	<div class="row">
+			<div class="card col-md-3" ng-repeat="stockCard in page.content">
+				<div class="card-block">
+    				<h4 class="card-title">{{stockCard.stockName}}</h4>
+    				<p class="card-text">{{stockCard.sector}}</p>
+    				<div ng-if="stockCard.latestPrice != undefined">
+						<span class="label label-primary rds-price-underline">{{stockCard.latestPrice.price}}</span>
+					</div>
+					<div class="pull-right">
+						<button ng-click="markFavourite(stockCard.id)" class="btn btn-sm">Mark Favourite</button>
+					</div>
+  				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div style="text-align:center" class="col-md-12">
+				<a id="loadMore" class="btn-link" ng-if="((page.number + 1) * page.size) <= page.totalElements " class="pull-right" ng-click="loadMore()">Load More</a>
+			</div>
+		</div>
+    </script>
+    
+    <script type="text/ng-template" id="favourite-stock-tpl.html">
+    	<div class="row">
+			<div class="col-md-3" ng-repeat="stockCard in favStocks">
+				
+			</div>
+		</div>
+    </script>
+</html>
